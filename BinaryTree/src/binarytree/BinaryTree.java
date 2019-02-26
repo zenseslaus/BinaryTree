@@ -55,6 +55,59 @@ public class BinaryTree {
         }
     }
 
+    public Node find(int value) {
+        Node current = getRoot();
+
+        while (current != null) {
+            if (value < current.getiData()) {
+                if (current.getLeft() == null) {
+                    return null;
+                } else {
+                    current = current.getLeft();
+                }
+            } else if (value > current.getiData()) {
+                if (current.getRight() == null) {
+                    return null;
+                } else {
+                    current = current.getRight();
+                }
+            } else if (value == current.getiData()) {
+                return current;
+            }
+        }
+        return null;
+    }
+
+    public void delete(int value) {
+        Node current = find(value);
+        if (current != null) {
+            if (current.getRight() == null && current.getLeft() == null) {
+                if (current.getiData() < current.getParent().getiData()) { //tangkai kiri
+                    current.getParent().setLeft(null);
+                } else {
+                    current.getParent().setRight(null);
+                }
+            } else if (current.getRight() == null && current.getLeft() != null) { //hapus anak 1 kiri
+
+                if (current.getiData() < current.getParent().getiData()) {
+                    current.getParent().setLeft(current.getLeft());
+                    current.getLeft().setParent(current.getParent());
+                } else {
+                    current.getParent().setRight(current.getLeft());
+                    current.getLeft().setParent(current.getParent());
+                }
+            } else if (current.getRight() != null && current.getLeft() == null) { //hapus anak 1 kanan
+                if (current.getiData() < current.getParent().getiData()) {
+                    current.getParent().setLeft(current.getRight());
+                    current.getRight().setParent(current.getParent());
+                } else {
+                    current.getParent().setRight(current.getRight());
+                    current.getRight().setParent(current.getParent());
+                }
+            }
+        }
+    }
+
     public Node getRoot() {
         return root;
     }

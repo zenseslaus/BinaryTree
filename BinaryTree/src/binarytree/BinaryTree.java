@@ -108,6 +108,31 @@ public class BinaryTree {
         }
     }
 
+    public void preOrder(Node localRoot) {
+        if (localRoot != null) {
+            System.out.print(localRoot.getiData() + " ");
+            preOrder(localRoot.getLeft());
+            preOrder(localRoot.getRight());
+        }
+    }
+
+    public void inOrder(Node localRoot) {
+        if (localRoot != null) {
+            inOrder(localRoot.getLeft());
+            System.out.print(localRoot.getiData() + " ");
+            inOrder(localRoot.getRight());
+        }
+    }
+
+    public void postOrder(Node localRoot) {
+        if (localRoot != null) {
+            postOrder(localRoot.getLeft());
+            postOrder(localRoot.getRight());
+            System.out.print(localRoot.getiData() + " ");
+
+        }
+    }
+
     public Node getRoot() {
         return root;
     }

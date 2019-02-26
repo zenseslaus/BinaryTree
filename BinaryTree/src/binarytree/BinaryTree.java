@@ -11,11 +11,55 @@ package binarytree;
  */
 public class BinaryTree {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    private Node root;
+
+    public BinaryTree() {
+        root = null;
     }
-    
+
+    public void insert(int value) {
+        Node newNode = new Node(value); // make new node
+        if (getRoot() == null) // no node in root
+        {
+            root = newNode;
+
+        } else // root occupied
+        {
+            Node current = getRoot(); // start at root
+
+            while (current != null) {
+                if (value < current.getiData()) // go left?
+                {
+                    if (current.getLeft() == null) // if end of the line,
+                    { // insert on left
+                        current.setLeft(newNode);
+                        newNode.setParent(current);
+                        current = null;
+                    } else // end if go left
+                    {
+                        current = current.getLeft();
+                    } // end else not
+                } else // or go right?
+                {
+                    if (current.getRight() == null) // if end of the line
+                    { // insert on right
+                        current.setRight(newNode);
+                        newNode.setParent(current);
+                        current = null;
+                    } else // end else go right
+                    {
+                        current = current.getRight();
+                    } // end while
+                }// end insert
+            }
+        }
+    }
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public void setRoot(Node root) {
+        this.root = root;
+    }
 }

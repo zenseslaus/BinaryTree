@@ -135,6 +135,72 @@ public class BinaryTree {
         }
     }
 
+    public void depth(int value) {
+        Node current = getRoot();
+        int x = 0;
+        while (current != null) {
+            if (value < current.getiData()) {
+                if (current.getLeft() == null) {
+                } else {
+                    current = current.getLeft();
+                    x++;
+                }
+            } else if (value > current.getiData()) {
+                if (current.getRight() == null) {
+                } else {
+                    current = current.getRight();
+                    x++;
+                }
+            } else if (value == current.getiData()) {
+                System.out.println("hasil depth : " + x);
+                current = null;
+            }
+        }
+    }
+
+    public void height(int value) {
+        Node current = getRoot();
+        int x = 1;
+        while (current != null) {
+            if (value < current.getiData()) {
+                if (current.getLeft() == null) {
+                } else {
+                    current = current.getLeft();
+                    x++;
+                }
+            } else if (value > current.getiData()) {
+                if (current.getRight() == null) {
+                } else {
+                    current = current.getRight();
+                    x++;
+                }
+            } else if (value == current.getiData()) {
+                System.out.println("hasil height : " + x);
+                current = null;
+            }
+        }
+    }
+
+    public void preOrderi(Node localRoot) {
+        if (localRoot != null) {
+            if (localRoot.getLeft() == null && localRoot.getRight() == null) {
+                System.out.println(localRoot.getiData());
+            }
+//            System.out.print(localRoot.getiData() + " ");
+            preOrderi(localRoot.getLeft());
+            preOrderi(localRoot.getRight());
+        }
+    }
+
+    public void leaf() {
+        preOrderi(getRoot());
+    }
+
+    public void descendant(int value) {
+        Node cari = find(value);
+        preOrder(cari);
+    }
+
     public Node getRoot() {
         return root;
     }

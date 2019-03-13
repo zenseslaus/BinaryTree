@@ -181,24 +181,33 @@ public class BinaryTree {
         }
     }
 
-    public void preOrderi(Node localRoot) {
+    public void leafHelper(Node localRoot) {
         if (localRoot != null) {
             if (localRoot.getLeft() == null && localRoot.getRight() == null) {
                 System.out.println(localRoot.getiData());
             }
 //            System.out.print(localRoot.getiData() + " ");
-            preOrderi(localRoot.getLeft());
-            preOrderi(localRoot.getRight());
+            leafHelper(localRoot.getLeft());
+            leafHelper(localRoot.getRight());
         }
     }
 
     public void leaf() {
-        preOrderi(getRoot());
+        leafHelper(getRoot());
     }
 
     public void descendant(int value) {
         Node cari = find(value);
-        preOrder(cari);
+        descendantHelper(cari.getLeft());
+        descendantHelper(cari.getRight());
+    }
+
+    public void descendantHelper(Node localRoot) {
+        if (localRoot != null) {
+            System.out.print(localRoot.getiData() + " ");
+            descendantHelper(localRoot.getLeft());
+            descendantHelper(localRoot.getRight());
+        }
     }
 
     public Node getRoot() {

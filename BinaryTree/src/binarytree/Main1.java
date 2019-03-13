@@ -44,6 +44,7 @@ public class Main1 {
 //        tree.height(5);
         tree.depth(12);
         tree.height(12);
-        tree.preOrderi(tree.getRoot());
+        tree.leaf();
+        tree.descendant(6);
     }
 }

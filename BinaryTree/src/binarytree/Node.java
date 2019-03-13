@@ -22,6 +22,37 @@ public class Node {
         right = null;
     }
 
+    public void Insert(int key) {
+//        Node current = getRoot(); // start at root
+
+        if (key < getiData()) // go left?
+        {
+            if (getLeft() == null) // if end of the line,
+            { // insert on left
+                setLeft(new Node(key));
+//                key.setParent(current);
+//                current = null;
+            } else // end if go left
+            {
+//                current = current.getLeft();
+                getLeft().Insert(key);
+            } // end else not
+        } else // or go right?
+        {
+            if (getRight() == null) // if end of the line
+            { // insert on right
+                setRight(new Node(key));
+//                key.setParent(current);
+//                current = null;
+            } else // end else go right
+            {
+//                current = current.getRight();
+                getRight().Insert(key);
+            } // end while
+        }// end insert
+
+    }
+
     public int getiData() {
         return iData;
     }

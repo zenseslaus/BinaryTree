@@ -25,33 +25,35 @@ public class BinaryTree {
 
         } else // root occupied
         {
-            Node current = getRoot(); // start at root
-
-            while (current != null) {
-                if (value < current.getiData()) // go left?
-                {
-                    if (current.getLeft() == null) // if end of the line,
-                    { // insert on left
-                        current.setLeft(newNode);
-                        newNode.setParent(current);
-                        current = null;
-                    } else // end if go left
-                    {
-                        current = current.getLeft();
-                    } // end else not
-                } else // or go right?
-                {
-                    if (current.getRight() == null) // if end of the line
-                    { // insert on right
-                        current.setRight(newNode);
-                        newNode.setParent(current);
-                        current = null;
-                    } else // end else go right
-                    {
-                        current = current.getRight();
-                    } // end while
-                }// end insert
-            }
+            getRoot().Insert(value);
+//            Node test = new Node(value);
+//            Node current = getRoot(); // start at root
+//
+//            while (current != null) {
+//                if (value < current.getiData()) // go left?
+//                {
+//                    if (current.getLeft() == null) // if end of the line,
+//                    { // insert on left
+//                        current.setLeft(newNode);
+//                        newNode.setParent(current);
+//                        current = null;
+//                    } else // end if go left
+//                    {
+//                        current = current.getLeft();
+//                    } // end else not
+//                } else // or go right?
+//                {
+//                    if (current.getRight() == null) // if end of the line
+//                    { // insert on right
+//                        current.setRight(newNode);
+//                        newNode.setParent(current);
+//                        current = null;
+//                    } else // end else go right
+//                    {
+//                        current = current.getRight();
+//                    } // end while
+//                }// end insert
+//            }
         }
     }
 

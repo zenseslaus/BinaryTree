@@ -80,34 +80,105 @@ public class BinaryTree {
         return null;
     }
 
-    public void delete(int value) {
-        Node current = find(value);
-        if (current != null) {
-            if (current.getRight() == null && current.getLeft() == null) {
-                if (current.getiData() < current.getParent().getiData()) { //tangkai kiri
-                    current.getParent().setLeft(null);
-                } else {
-                    current.getParent().setRight(null);
-                }
-            } else if (current.getRight() == null && current.getLeft() != null) { //hapus anak 1 kiri
+//    public void delete(int value) {
+//        Node current = find(value);
+//        if (current != null) {
+//            if (current.getRight() == null && current.getLeft() == null) {
+//                if (current.getiData() < current.getParent().getiData()) { //tangkai kiri
+//                    current.getParent().setLeft(null);
+//                } else {
+//                    current.getParent().setRight(null);
+//                }
+//            } else if (current.getRight() == null && current.getLeft() != null) { //hapus anak 1 kiri
+//
+//                if (current.getiData() < current.getParent().getiData()) {
+//                    current.getParent().setLeft(current.getLeft());
+//                    current.getLeft().setParent(current.getParent());
+//                } else {
+//                    current.getParent().setRight(current.getLeft());
+//                    current.getLeft().setParent(current.getParent());
+//                }
+//            } else if (current.getRight() != null && current.getLeft() == null) { //hapus anak 1 kanan
+//                if (current.getiData() < current.getParent().getiData()) {
+//                    current.getParent().setLeft(current.getRight());
+//                    current.getRight().setParent(current.getParent());
+//                } else {
+//                    current.getParent().setRight(current.getRight());
+//                    current.getRight().setParent(current.getParent());
+//                }
+//            }
+//        }
+//    }
+    public Node getParent(int key) {
+        Node bantu = root;
+        Node parent = null;
 
-                if (current.getiData() < current.getParent().getiData()) {
-                    current.getParent().setLeft(current.getLeft());
-                    current.getLeft().setParent(current.getParent());
-                } else {
-                    current.getParent().setRight(current.getLeft());
-                    current.getLeft().setParent(current.getParent());
+        while (bantu != null) {
+            if (key == bantu.getiData()) {
+                return parent;
+            } else if (key < bantu.getiData()) {
+                parent = bantu;
+                bantu = bantu.getLeft();
+            } else {
+                parent = bantu;
+                bantu = bantu.getRight();
+            }
+        }
+        return bantu;
+    }
+
+    public boolean delete(int key) {
+        Node bantu = find(key);
+        Node parent;
+//        Node predecessor;
+//        Node parentPredecessor;
+
+//        getNodeParent(key, bantu, parent);
+        if (bantu != null) {
+            if (bantu.getiData() == root.getiData()) { //hapus root
+                // jika yang di hapus leaf
+                if (bantu.isLeaf()) {
+                    root = null;
+                } // jika yang dihapus hanya punya cabang kiri
+                else if (bantu.getRight() == null) {
+                    root = bantu.getLeft();
+                } // jika yang dihapus hanya punya cabang kanan
+                else if (bantu.getLeft() == null) {
+                    root = bantu.getRight();
+                    // jika yang dihapus punya cabang kiri dan kanan
                 }
-            } else if (current.getRight() != null && current.getLeft() == null) { //hapus anak 1 kanan
-                if (current.getiData() < current.getParent().getiData()) {
-                    current.getParent().setLeft(current.getRight());
-                    current.getRight().setParent(current.getParent());
+            } else {
+                parent = getParent(key);
+//                parent = bantu.parent;
+                if (key < parent.getiData()) {
+
+                    // jika yang di hapus leaf
+                    if (bantu.isLeaf()) {
+                        parent.setLeft(null);
+                    } // jika yang dihapus hanya punya cabang kiri
+                    else if (bantu.getRight() == null) {
+                        parent.setLeft(bantu.getLeft());
+                    } // jika yang dihapus hanya punya cabang kanan
+                    else if (bantu.getLeft() == null) {
+                        parent.setLeft(bantu.getRight());
+                        // jika yang dihapus punya cabang kiri dan kanan
+                    }
                 } else {
-                    current.getParent().setRight(current.getRight());
-                    current.getRight().setParent(current.getParent());
+                    // jika yang di hapus leaf
+                    if (bantu.isLeaf()) {
+                        parent.setRight(null);
+                    } // jika yang dihapus hanya punya cabang kiri
+                    else if (bantu.getRight() == null) {
+                        parent.setRight(bantu.getLeft()); 
+                    } // jika yang dihapus hanya punya cabang kanan
+                    else if (bantu.getLeft() == null) {
+                        parent.setRight(bantu.getRight());
+                        // jika yang dihapus punya cabang kiri dan kanan
+                    }
                 }
             }
         }
+        return false;
     }
 
     public void preOrder(Node localRoot) {

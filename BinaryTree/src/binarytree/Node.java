@@ -14,7 +14,7 @@ public class Node {
     private int iData;
     private Node left;
     private Node right;
-    private Node parent;
+//    private Node parent;
 
     public Node(int value) {
         this.iData = value;
@@ -77,11 +77,14 @@ public class Node {
         this.right = right;
     }
 
-    public Node getParent() {
-        return parent;
-    }
-
-    public void setParent(Node parent) {
-        this.parent = parent;
+//    public Node getParent() {
+//        return parent;
+//    }
+//
+//    public void setParent(Node parent) {
+//        this.parent = parent;
+//    }
+    public boolean isLeaf() {
+        return ((getLeft() == null) && (getRight() == null));
     }
 }
